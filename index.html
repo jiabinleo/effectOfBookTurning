@@ -1,0 +1,93 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>手机端书本翻页效果</title>
+
+	<meta name="viewport" content="width = 1050, user-scalable = no" />
+
+	<script type="text/javascript" src="js/jquery.min.1.7.js"></script>
+	<script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+
+</head> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<meta name="viewport" content="width = 1366, user-scalable = no" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery.min.1.7.js"></script>
+	<script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+
+</head>
+<body>
+
+	<div class="flipbook-viewport">
+		<div class="container">
+			<div id="pageHTML" class="flipbook">
+			</div>
+		</div>
+	</div>
+<script>
+(function () {
+    var width = document.documentElement.clientWidth;
+    var style = document.createElement("style")
+    style.innerHTML = "html{font-size: " + width / 16 + "px !important;}"
+    document.head.appendChild(style)
+})();
+</script>
+	<script type="text/javascript">
+		var pageHTML = ""
+		for (let i = 1; i <= 28; i++) {
+			pageHTML += `<div style="background-image:url(pages/${i}.jpg)"></div>`
+		}
+		$("#pageHTML").html(pageHTML)
+
+		function loadApp() {
+
+			// Create the flipbook
+
+
+			$('.flipbook').turn({
+				// Width
+
+				width: 922,
+
+				// Height
+
+				height: 600,
+
+				// Elevation
+
+				elevation: 50,
+
+				// Enable gradients
+
+				gradients: true,
+
+				// Auto center this flipbook
+
+				autoCenter: true
+
+			});
+		}
+
+		// Load the HTML4 version if there's not CSS transform
+
+		yepnope({
+			test: Modernizr.csstransforms,
+			yep: ['js/turn.js'],
+			nope: ['js/turn.html4.min.js'],
+			both: ['css/basic.css'],
+			complete: loadApp
+		});
+
+	</script>
+
+</body>
+
+</html>
